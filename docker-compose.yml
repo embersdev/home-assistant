@@ -2,11 +2,11 @@ version: '3'
 services:
   homeassistant:
     container_name: home-assistant
-    image: "ghcr.io/home-assistant/home-assistant:stable"
+    image: ghcr.io/home-assistant/home-assistant:stable
     depends_on:
       - mqtt
     ports:
-      - "8123:8123"
+      - 8123:8123
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro

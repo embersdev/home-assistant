@@ -1,24 +1,19 @@
 version: '3'
 services:
   homeassistant:
-    container_name: home-assistant
+    container_name: homeassistant
     image: ghcr.io/home-assistant/home-assistant:stable
     depends_on:
       - mqtt
     ports:
       - 8123:8123
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
       - ./config/home-assistant:/config
+      - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
     privileged: true
     network_mode: bridge
-    devices:
-      - /dev/ttyUSB0
-      - /dev/ttyUSB1
-      - /dev/ttyACM0
-
+    
   mqtt:
     container_name: mqtt
     image: eclipse-mosquitto:latest
@@ -27,8 +22,8 @@ services:
       # - "8883:8883" # secure
       # - "9001:9001" # websockets
     volumes:
-      - /etc/localtime:/etc/localtime:ro
       - ./config/mqtt/config:/mqtt/config:ro
       - ./config/mqtt/data:/mqtt/data
       - ./config/mqtt/log:/mqtt/log
+      - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped

@@ -2,7 +2,7 @@ version: '3'
 services:
   homeassistant:
     container_name: home-assistant
-    image: "home-assistant/home-assistant:stable"
+    image: "ghcr.io/home-assistant/home-assistant:stable"
     depends_on:
       - mqtt
     ports:
